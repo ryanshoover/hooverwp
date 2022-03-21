@@ -14,10 +14,12 @@ $rootPath = realpath( __DIR__ . '/..' );
  */
 require_once( $rootPath . '/vendor/autoload.php' );
 
+$is_local = ! isset( $_ENV['PANTHEON_ENVIRONMENT'] ) || 'lando' === $_ENV['PANTHEON_ENVIRONMENT'];
+
 /*
  * Fetch .env
  */
-if ( ! isset( $_ENV['PANTHEON_ENVIRONMENT'] ) && file_exists( $rootPath . '/.env' ) ) {
+if ( $is_local && file_exists( $rootPath . '/.env' ) ) {
 	$dotenv = Dotenv\Dotenv::create($rootPath);
 	$dotenv->load();
 	$dotenv->required( array(
@@ -36,7 +38,7 @@ define( 'DISALLOW_FILE_MODS', true );
 /**
  * Force SSL
  */
-define( 'FORCE_SSL_ADMIN', true );
+define( 'FORCE_SSL_ADMIN', false );
 
 /**
  * Limit post revisions
@@ -46,7 +48,7 @@ define( 'WP_POST_REVISIONS', 3 );
 /*
  * If NOT on Pantheon
  */
-if ( ! isset( $_ENV['PANTHEON_ENVIRONMENT'] ) ):
+if ( $is_local ):
 	/**
 	 * Define site and home URLs
 	 */
@@ -74,6 +76,9 @@ if ( ! isset( $_ENV['PANTHEON_ENVIRONMENT'] ) ):
 	 * Set debug modes
 	 */
 	define( 'WP_DEBUG', getenv( 'WP_DEBUG' ) === 'true' ? true : false );
+	define( 'WP_DEBUG_DISPLAY', getenv( 'WP_DEBUG_DISPLAY' ) === 'true' ? true : WP_DEBUG );
+	define( 'WP_DEBUG_LOG', getenv( 'WP_DEBUG_LOG' ) === 'true' ? true : WP_DEBUG );
+	define( 'SCRIPT_DEBUG', getenv( 'SCRIPT_DEBUG' ) === 'true' ? true : WP_DEBUG );
 	define( 'IS_LOCAL', getenv( 'IS_LOCAL' ) !== false ? true : false );
 
 	/**#@+
@@ -85,21 +90,21 @@ if ( ! isset( $_ENV['PANTHEON_ENVIRONMENT'] ) ):
 	 *
 	 * @since 2.6.0
 	 */
-	define( 'AUTH_KEY',         'put your unique phrase here' );
-	define( 'SECURE_AUTH_KEY',  'put your unique phrase here' );
-	define( 'LOGGED_IN_KEY',    'put your unique phrase here' );
-	define( 'NONCE_KEY',        'put your unique phrase here' );
-	define( 'AUTH_SALT',        'put your unique phrase here' );
-	define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
-	define( 'LOGGED_IN_SALT',   'put your unique phrase here' );
-	define( 'NONCE_SALT',       'put your unique phrase here' );
+	define('AUTH_KEY',         '8[|EdQcP!uuV+J-g7KuA*{.x{u~(k&70Up{ze5P 3%I`|Q(*?eN{D_2?C{#kKsrD');
+	define('SECURE_AUTH_KEY',  'N_Xl-@/Cr(:EtpOaU-3Rm6gc*V4Z}t0:%k+V,QW1*~tJ>[wo7^I>pv2r:9aIc-N<');
+	define('LOGGED_IN_KEY',    '|[c2lIxS1.Uoz#y@_-p{_&hG$i++yR]CJ5W9l#x4uCU^)Jkd^OX<&qQ%O]0 JN:-');
+	define('NONCE_KEY',        'WK,7-uZBr>GN5L[F9*)9;9~W2,UG.8+TAIjFZ_+n$1 e8D@8_v <Pg^q%?hTiiq^');
+	define('AUTH_SALT',        'h#7v5RU:#-<F,GL%Do$|{FS-@qK-#P9>L&6Vm$mAI8kzP0]x]O*99kf0%+*O/:XW');
+	define('SECURE_AUTH_SALT', '+W8!^rM0*rs4>P7{Cl_1w8z$a|)We)ylM@mm|{M|^+uw9EDhaG6zMKt|ZA>x|=nT');
+	define('LOGGED_IN_SALT',   '|*<Q2Rh?!..`(g*358DKmVN[${Fu-CPyzu?+5to.TrZ7VrM*taO~#<j(KI;EvZ|C');
+	define('NONCE_SALT',       '!b-r>HmsxSf=I=yW]v8+o=!IEXV>zJu;YD#/q8hMgKHmrmiV&QEG8}&r?Q]Oplb6');
 
 endif;
 
 /*
  * If on Pantheon
  */
-if ( isset( $_ENV['PANTHEON_ENVIRONMENT'] ) ):
+if ( ! $is_local ):
 
 	// ** MySQL settings - included in the Pantheon Environment ** //
 	/** The name of the database for WordPress */

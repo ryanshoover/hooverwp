@@ -1,0 +1,39 @@
+{
+  "name": "performance",
+  "license": "GPL-2.0-or-later",
+  "repository": "git+https://github.com/WordPress/performance.git",
+  "devDependencies": {
+    "@octokit/rest": "^19.0.4",
+    "@wordpress/env": "^5.3.0",
+    "@wordpress/scripts": "^24.0.0",
+    "chalk": "^4.1.2",
+    "commander": "^9.4.0",
+    "fast-glob": "^3.2.7",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "lodash": "4.17.21"
+  },
+  "scripts": {
+    "changelog": "./bin/plugin/cli.js changelog",
+    "since": "./bin/plugin/cli.js since",
+    "readme": "./bin/plugin/cli.js readme",
+    "translations": "./bin/plugin/cli.js translations",
+    "enabled-modules": "./bin/plugin/cli.js enabled-modules",
+    "format-js": "wp-scripts format ./bin",
+    "lint-js": "wp-scripts lint-js ./bin",
+    "format-php": "wp-env run composer run-script format",
+    "prelint-php": "wp-env run composer 'install --no-interaction'",
+    "lint-php": "wp-env run composer run-script lint",
+    "pretest-php": "wp-env run composer 'install --no-interaction'",
+    "test-php": "wp-env run phpunit 'phpunit -c /var/www/html/wp-content/plugins/performance/phpunit.xml.dist --verbose'",
+    "pretest-php-multisite": "wp-env run composer 'install --no-interaction'",
+    "test-php-multisite": "wp-env run phpunit 'WP_MULTISITE=1 phpunit -c /var/www/html/wp-content/plugins/performance/tests/multisite.xml --verbose'",
+    "wp-env": "wp-env",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.php": [
+      "composer run-script lint"
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 {
-  "name": "pantheon-systems/example-wordpress-composer",
-  "description": "",
+  "name": "ryanshoover/hooverwp",
+  "description": "dev-hooverwp.pantheonsite.io",
   "type": "project",
   "keywords": [],
   "repositories": [

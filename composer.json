@@ -25,6 +25,7 @@
     "wpackagist-plugin/pantheon-advanced-page-cache": ">=0.3.0",
     "wpackagist-plugin/pantheon-hud": "^0.3.1",
     "wpackagist-plugin/wp-native-php-sessions": ">=0.6.9",
+    "wpackagist-plugin/wp-saml-auth": "^2.1",
     "wpackagist-theme/twentynineteen": "^1.2"
   },
   "require-dev": {

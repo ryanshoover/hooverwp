@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9a2fafdf26b1cd2c43ffc83f69ba4ae5",
+    "content-hash": "02b5af1288a468629d791977031ed782",
     "packages": [
         {
             "name": "composer/installers",
@@ -588,6 +588,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/lh-hsts/"
+        },
+        {
+            "name": "wpackagist-plugin/onelogin-saml-sso",
+            "version": "3.4.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/onelogin-saml-sso/",
+                "reference": "trunk"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/onelogin-saml-sso.zip?timestamp=1644012546"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/onelogin-saml-sso/"
         },
         {
             "name": "wpackagist-plugin/pantheon-advanced-page-cache",
